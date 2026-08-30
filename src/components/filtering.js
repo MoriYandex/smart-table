@@ -36,12 +36,9 @@ export function initFiltering(elements, indexes) {
             const from = state.totalFrom ? parseFloat(state.totalFrom) : undefined;
             const to = state.totalTo ? parseFloat(state.totalTo) : undefined;
             if (!isNaN(from) || !isNaN(to)) {
-                const filters = {};
-                filters.total = [from, to];
-                return data.filter(row => compare(row, filters));
+                state.total = [from, to];
             }
         }
-        
         return data.filter(row => compare(row, state));
     }
 }
