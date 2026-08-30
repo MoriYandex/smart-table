@@ -31,7 +31,17 @@ export function initFiltering(elements, indexes) {
             return data;
         }
 
-        // @todo: #4.5 — отфильтровать данные используя компаратор
+        // @todo: #4.5 — отфильтровать данные используя компаратор        
+        if (state.totalFrom || state.totalTo) {
+            const from = state.totalFrom ? parseFloat(state.totalFrom) : undefined;
+            const to = state.totalTo ? parseFloat(state.totalTo) : undefined;
+            if (!isNaN(from) || !isNaN(to)) {
+                const filters = {};
+                filters.total = [from, to];
+                return data.filter(row => compare(row, filters));
+            }
+        }
+        
         return data.filter(row => compare(row, state));
     }
 }
