@@ -30,7 +30,6 @@ export function initFiltering(elements) {
                     delete state[field];
                 }
             }
-            return query;
         }
 
         const filter = {};
